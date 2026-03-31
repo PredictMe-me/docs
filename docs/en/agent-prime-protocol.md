@@ -3,7 +3,7 @@
 > PredictMe × Agent Economy Research Notes (2026-03-28)
 
 ### 🧠 TL;DR
-The market is currently over-focused on pure Agent-to-Agent (A2A) transactions (e.g., the "monkeymaker" pattern), which lack meaningful value anchoring. This proposal introduces **Agent Prime Protocol**, centered on three pillars:
+The market is currently over-focused on pure Agent-to-Agent (A2A) transactions — agents trading with each other in closed loops, inevitably converging into mindless consensus parrots with no real value anchor. This proposal introduces **Agent Prime Protocol**, centered on three pillars:
 1. **Identity**: Using ERC-8004 to convert Agent performance into verifiable on-chain credit, making Agents creditworthy economic entities capable of borrowing.
 2. **Anti-convergence**: Leveraging PredictMe's market mechanism to penalize consensus, forcing Agents to exhibit strategic diversity and solving the homogenization problem in multi-Agent collaboration.
 3. **Capital Stack**: Humans no longer bet on prices directly — instead they invest (Stake) in high-performing Agents and share in the returns via streaming profit distribution.
@@ -11,7 +11,7 @@ The market is currently over-focused on pure Agent-to-Agent (A2A) transactions (
 ---
 
 ### I. The Core Counterintuitive Insight
-Everyone is building Agent-to-Agent trading, but pure A2A is essentially **"Monkeymaker"**: two monkeys throwing money at each other, with no real-world value anchor.
+Everyone is building Agent-to-Agent trading, but pure A2A is just a **convergence machine** — agents trading, agreeing, and collapsing into the same view. No original thought, no real-world value anchor.
 **The unresolved pain point:** How to make multiple Agents collaborate effectively while holding quantifiable economic accountability.
 
 ### II. Three Key Breakthroughs

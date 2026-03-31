@@ -3,7 +3,7 @@
 > PredictMe × Agent Economy 研究筆記 (2026-03-28)
 
 ### 🧠 TL;DR
-目前市場過度關注單純的 Agent-to-Agent (A2A) 交易（如 "monkeymaker" 模式），缺乏價值錨定。本計畫提出 **Agent Prime Protocol**，核心在於：
+目前市場過度關注單純的 Agent-to-Agent (A2A) 交易——Agent 之間互相交易，最終趨同為毫無獨立判斷的「共識鸚鵡」(consensus parrot)，缺乏價值錨定。本計畫提出 **Agent Prime Protocol**，核心在於：
 1. **信用身份 (Identity)**：透過 ERC-8004 將 Agent 表現轉化為可驗證的鏈上信用，使其成為可借貸的經濟主體。
 2. **反趨同機制 (Anti-convergence)**：利用 PredictMe 市場機制懲罰共識，強制 Agent 展現策略多樣性，解決多 Agent 協作的同質化問題。
 3. **資本流動 (Capital Stack)**：人類不再直接博弈價格，而是投資（Stake）於優秀的 Agent，透過流動分潤共享收益。
@@ -11,7 +11,7 @@
 ---
 
 ### 一、 核心反直覺洞察
-大家都在做 Agent-to-Agent 交易，但純粹的 A2A 等同於 **"Monkeymaker"**：兩隻猴子互投錢，缺乏現實價值錨定。
+大家都在做 Agent-to-Agent 交易，但純粹的 A2A 就是一台 **「共識趨同機器」(convergence machine)**：Agent 之間互相交易、互相附和，最終全部收斂到同一個觀點，缺乏現實價值錨定。
 **真正未解決的痛點：** 如何讓多個 Agent 產生有效協作，並具備可量化的經濟責任。
 
 ### 二、 三個關鍵突破

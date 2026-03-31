@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-The current AI Agent economy is a "monkey money machine" — Agents trade with each other in closed loops, lacking any real value anchor. Nobody has solved how multiple Agents can collaborate effectively, which is precisely why the Agent economy has no commercial value. At the same time, multi-agent systems naturally tend toward consensus convergence, and that convergence destroys the diversity needed to generate alpha.
+The current AI Agent economy is a **convergence machine** — Agents trade with each other in closed loops, automatically aligning with consensus like Yes Men, lacking any real value anchor. Nobody has solved how multiple Agents can collaborate effectively, which is precisely why the Agent economy has no commercial value. At the same time, multi-agent systems naturally tend toward consensus convergence, and that convergence destroys the diversity needed to generate alpha.
 
 PredictMe has a unique structural advantage: its 10-second settlement Grid creates a financial arena where convergence is economically penalized. Agents that think alike cannot profit — the market mechanism itself is an anti-convergence engine.
 
