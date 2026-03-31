@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PredictMe Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f8f9fa;
+      --bg-sidebar-hover: #eef0f2;
+      --bg-active: #e8ecf0;
+      --text: #1a1a2e;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e5e7eb;
+      --accent: #4f46e5;
+      --accent-light: #eef2ff;
+      --code-bg: #f4f5f7;
+      --blockquote-border: #d1d5db;
+      --blockquote-bg: #f9fafb;
+      --link: #4f46e5;
+      --shadow: rgba(0,0,0,0.06);
+    }
+
+    [data-theme="dark"] {
+      --bg: #1a1a2e;
+      --bg-sidebar: #16162a;
+      --bg-sidebar-hover: #222244;
+      --bg-active: #2a2a4a;
+      --text: #e2e8f0;
+      --text-secondary: #a0aec0;
+      --text-muted: #718096;
+      --border: #2d3748;
+      --accent: #818cf8;
+      --accent-light: #1e1e3f;
+      --code-bg: #222244;
+      --blockquote-border: #4a5568;
+      --blockquote-bg: #1e1e3a;
+      --link: #818cf8;
+      --shadow: rgba(0,0,0,0.3);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s, border-color 0.3s;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .sidebar-controls {
+      display: flex;
+      gap: 6px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .control-btn {
+      flex: 1;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .control-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 10px 20px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--text);
+    }
+
+    .nav-item.active {
+      background: var(--bg-active);
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 500;
+    }
+
+    .nav-label-zh {
+      display: block;
+    }
+
+    .nav-label-en {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      margin-left: 280px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+      flex: 1;
+    }
+
+    .content-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Mobile */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border);
+      z-index: 90;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    .mobile-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 95;
+    }
+
+    .overlay.visible { display: block; }
+
+    @media (max-width: 768px) {
+      .mobile-header { display: flex; }
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .main {
+        margin-left: 0;
+        padding-top: 56px;
+      }
+      .content { padding: 24px 16px 60px; }
+    }
+
+    /* Markdown styles */
+    .markdown-body h1 {
+      font-size: 2em;
+      font-weight: 700;
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.5px;
+    }
+
+    .markdown-body h2 {
+      font-size: 1.5em;
+      font-weight: 600;
+      margin: 40px 0 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .markdown-body h3 {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin: 32px 0 8px;
+    }
+
+    .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+      font-size: 1em;
+      font-weight: 600;
+      margin: 24px 0 8px;
+    }
+
+    .markdown-body p {
+      margin: 0 0 16px;
+    }
+
+    .markdown-body a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .markdown-body a:hover {
+      text-decoration: underline;
+    }
+
+    .markdown-body ul, .markdown-body ol {
+      margin: 0 0 16px;
+      padding-left: 24px;
+    }
+
+    .markdown-body li {
+      margin-bottom: 4px;
+    }
+
+    .markdown-body li > ul, .markdown-body li > ol {
+      margin-bottom: 0;
+    }
+
+    .markdown-body blockquote {
+      border-left: 3px solid var(--blockquote-border);
+      background: var(--blockquote-bg);
+      padding: 12px 16px;
+      margin: 0 0 16px;
+      border-radius: 0 6px 6px 0;
+      color: var(--text-secondary);
+    }
+
+    .markdown-body blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    .markdown-body code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    .markdown-body pre {
+      background: var(--code-bg);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 0 0 16px;
+      border: 1px solid var(--border);
+    }
+
+    .markdown-body pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85em;
+      line-height: 1.6;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 16px;
+      font-size: 0.9em;
+    }
+
+    .markdown-body th, .markdown-body td {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .markdown-body th {
+      background: var(--bg-sidebar);
+      font-weight: 600;
+    }
+
+    .markdown-body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    .markdown-body img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .markdown-body strong {
+      font-weight: 600;
+    }
+
+    /* Home page */
+    .home-page {
+      max-width: 640px;
+    }
+
+    .home-page h1 {
+      font-size: 2.2em;
+      margin-bottom: 8px;
+      border: none;
+      padding-bottom: 0;
+    }
+
+    .home-page .subtitle {
+      font-size: 1.1em;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .home-page .section {
+      margin-bottom: 28px;
+    }
+
+    .home-page .section h2 {
+      font-size: 1.1em;
+      margin: 0 0 8px;
+      color: var(--accent);
+    }
+
+    .home-page .section p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .home-page .cta {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .home-page .cta:hover { opacity: 0.85; }
+
+    .lang-en { display: none; }
+    [data-lang="en"] .lang-zh { display: none; }
+    [data-lang="en"] .lang-en { display: block; }
+  </style>
+</head>
+<body>
+  <!-- Mobile header -->
+  <div class="mobile-header">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
+    <span class="mobile-logo">PredictMe</span>
+  </div>
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">PredictMe</div>
+        <div class="logo-sub">Thinking Documentation</div>
+      </div>
+      <div class="sidebar-controls">
+        <button class="control-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle dark mode">
+          <span id="theme-icon">&#9789;</span> Theme
+        </button>
+        <button class="control-btn" onclick="toggleLang()" id="lang-btn" title="Toggle language">
+          EN / ZH
+        </button>
+      </div>
+      <nav class="sidebar-nav" id="nav">
+        <a class="nav-item" data-page="home" onclick="navigate('home')">
+          <span class="nav-label-zh lang-zh">&#x1f3e0; 首頁</span>
+          <span class="nav-label-zh lang-en">&#x1f3e0; Home</span>
+        </a>
+        <a class="nav-item" data-page="agent-prime" onclick="navigate('agent-prime')">
+          <span class="nav-label-zh">Agent Prime Protocol</span>
+          <span class="nav-label-en">Core Thesis</span>
+        </a>
+        <a class="nav-item" data-page="anti-convergence" onclick="navigate('anti-convergence')">
+          <span class="nav-label-zh">反趨同理論</span>
+          <span class="nav-label-en">Anti-Convergence</span>
+        </a>
+        <a class="nav-item" data-page="arena-mvp" onclick="navigate('arena-mvp')">
+          <span class="nav-label-zh">Arena MVP 設計</span>
+          <span class="nav-label-en">Arena MVP Design</span>
+        </a>
+        <a class="nav-item" data-page="commentary" onclick="navigate('commentary')">
+          <span class="nav-label-zh">Commentary 機制設計</span>
+          <span class="nav-label-en">Commentary Design</span>
+        </a>
+        <a class="nav-item" data-page="vision" onclick="navigate('vision')">
+          <span class="nav-label-zh">Agentic Network 願景</span>
+          <span class="nav-label-en">Network Vision</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        Built by PredictMe team
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="content" id="content">
+        <div class="content-loading">Loading...</div>
+      </div>
+      <div class="footer">Built by PredictMe team</div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    // Page -> file mapping (zh and en versions)
+    const pageFiles = {
+      'agent-prime': 'agent-prime-protocol.md',
+      'anti-convergence': 'anti-convergence-thesis.md',
+      'arena-mvp': 'arena-mvp.md',
+      'commentary': 'commentary-design.md',
+      'vision': 'agentic-network-vision.md',
+    };
+
+    function getPageFile(page) {
+      const lang = document.documentElement.getAttribute('data-lang') || 'zh';
+      return `docs/${lang}/${pageFiles[page]}`;
+    }
+
+    const cache = {};
+    let currentPage = null;
+
+    // Marked config
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      },
+      breaks: false,
+      gfm: true
+    });
+
+    function getHomePage() {
+      const lang = document.documentElement.getAttribute('data-lang') || 'zh';
+      if (lang === 'en') {
+        return `
+          <div class="home-page">
+            <h1>PredictMe</h1>
+            <p class="subtitle">AI Agents + Prediction Markets</p>
+            <div class="section">
+              <h2>What is this?</h2>
+              <p>This is PredictMe's thinking documentation -- a curated collection of research, product specs, and strategic insights about building prediction markets powered by AI agents.</p>
+            </div>
+            <div class="section">
+              <h2>What you'll find</h2>
+              <p>Core theses on why AI agents are the natural participants in prediction markets, product specifications for the Arena MVP, anti-convergence theory, commentary system design, and our vision for an agentic prediction network.</p>
+            </div>
+            <div class="section">
+              <h2>Start here</h2>
+              <p>We recommend starting with <strong>Agent Prime Protocol</strong> -- it captures the fundamental thesis that drives everything else.</p>
+            </div>
+            <a class="cta" onclick="navigate('agent-prime')">Read Agent Prime Protocol &rarr;</a>
+          </div>`;
+      }
+      return `
+        <div class="home-page">
+          <h1>PredictMe</h1>
+          <p class="subtitle">AI Agents + Prediction Markets</p>
+          <div class="section">
+            <h2>這是什麼？</h2>
+            <p>這是 PredictMe 的思考文件集 -- 精選了關於 AI Agent 驅動預測市場的研究、產品規格與策略洞察。</p>
+          </div>
+          <div class="section">
+            <h2>你會看到什麼</h2>
+            <p>AI Agent 為何是預測市場的天然參與者、Arena MVP 產品規格、反趨同理論、Commentary 系統設計，以及 Agentic Prediction Network 的願景。</p>
+          </div>
+          <div class="section">
+            <h2>從這裡開始</h2>
+            <p>建議從 <strong>Agent Prime Protocol</strong> 開始閱讀 -- 這是驅動一切的根本論述。</p>
+          </div>
+          <a class="cta" onclick="navigate('agent-prime')">閱讀 Agent Prime Protocol &rarr;</a>
+        </div>`;
+    }
+
+    async function navigate(page) {
+      if (currentPage === page) return;
+      currentPage = page;
+
+      // Update URL hash
+      window.location.hash = page;
+
+      // Update active nav
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-page') === page);
+      });
+
+      const content = document.getElementById('content');
+
+      // Home page
+      if (page === 'home') {
+        content.innerHTML = getHomePage();
+        closeSidebarOnMobile();
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      // Markdown page
+      if (!pageFiles[page]) {
+        content.innerHTML = '<p>Page not found.</p>';
+        closeSidebarOnMobile();
+        return;
+      }
+
+      const file = getPageFile(page);
+
+      // Show loading
+      content.innerHTML = '<div class="content-loading">Loading...</div>';
+
+      try {
+        let md;
+        if (cache[file]) {
+          md = cache[file];
+        } else {
+          const resp = await fetch(file);
+          if (!resp.ok) throw new Error('Failed to load');
+          md = await resp.text();
+          cache[file] = md;
+        }
+        content.innerHTML = '<div class="markdown-body">' + marked.parse(md) + '</div>';
+        // Re-highlight code blocks
+        content.querySelectorAll('pre code').forEach(block => {
+          hljs.highlightElement(block);
+        });
+      } catch (e) {
+        content.innerHTML = '<p style="color:var(--text-muted)">Failed to load document. Make sure you are serving this site via HTTP (not file://).</p>';
+      }
+
+      closeSidebarOnMobile();
+      window.scrollTo(0, 0);
+    }
+
+    // Theme
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeUI(newTheme);
+    }
+
+    function updateThemeUI(theme) {
+      const icon = document.getElementById('theme-icon');
+      icon.innerHTML = theme === 'dark' ? '&#9788;' : '&#9789;';
+      document.getElementById('hljs-light').disabled = (theme === 'dark');
+      document.getElementById('hljs-dark').disabled = (theme !== 'dark');
+    }
+
+    // Language
+    function toggleLang() {
+      const curr = document.documentElement.getAttribute('data-lang') || 'zh';
+      const newLang = curr === 'zh' ? 'en' : 'zh';
+      document.documentElement.setAttribute('data-lang', newLang);
+      localStorage.setItem('lang', newLang);
+      // Re-render current page in new language
+      const page = currentPage;
+      currentPage = null; // force reload
+      navigate(page);
+    }
+
+    // Mobile sidebar
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('visible');
+    }
+
+    function closeSidebarOnMobile() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('overlay').classList.remove('visible');
+    }
+
+    // Init
+    (function init() {
+      // Restore theme
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeUI(savedTheme);
+
+      // Restore language
+      const savedLang = localStorage.getItem('lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', savedLang);
+
+      // Route from hash, default to insight
+      const hash = window.location.hash.slice(1) || 'agent-prime';
+      navigate(hash);
+    })();
+
+    // Handle hash changes (back/forward)
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.slice(1) || 'agent-prime';
+      currentPage = null; // force re-render
+      navigate(hash);
+    });
+  </script>
+</body>
+</html>
